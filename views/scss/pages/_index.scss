@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
 #page--index {
-
+  .hidden {
+    display: none;
+  }
+  .delete-btn {
+    background-color: red;
+  }
 }

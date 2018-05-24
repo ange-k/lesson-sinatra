@@ -9,6 +9,7 @@ require 'sass'
 require_relative 'models/todo'
 
 class Server < Sinatra::Base
+  enable :method_override
 
   configure do
     register Sinatra::Reloader
@@ -38,6 +39,21 @@ class Server < Sinatra::Base
     status = params['status']
     todo = Todo.new(content: content, status: status)
     todo.save
+    redirect '/'
+  end
+
+  delete '/destroy/:id' do
+    # データベースから該当記事を削除する。
+    # 対象記事（コンテンツ）の指定方法は？ -> elm.id で指定
+    # todo = Todo.find(params[:id])
+    # todo.destroy
+    p params[:id]
+
+    redirect '/'
+  end
+
+  patch '/patch/:id' do
+
     redirect '/'
   end
 

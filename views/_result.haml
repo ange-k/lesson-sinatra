@@ -5,4 +5,9 @@
         = name
     - target.each do |elm|
       %li.collection-item
+        %input.waves-circle.waves-effect.hidden.btn{type:'submit', value:''}
+        -# %a.delete-btn.waves-circle.waves-effect.btn{href: "/destroy/#{elm.id}"}
+        %form{action: "/destroy/#{elm.id}", method: :post, name: "destory"}
+          %input{ type: 'hidden', name: '_method', value: 'DELETE' }
+          %input.delete-btn.waves-circle.waves-effect.btn{ type: "submit", value: ""}
         = elm.content
