@@ -27,12 +27,12 @@ class Server < Sinatra::Base
   end
 
   #routes
-  
+
   get '/' do
     @todo = Todo.all.group_by(&:status)
     p @todo
     haml :index
-  end 
+  end
 
   post '/regist' do
     content = params['content']
@@ -43,19 +43,16 @@ class Server < Sinatra::Base
   end
 
   delete '/destroy/:id' do
-    # データベースから該当記事を削除する。
-    # 対象記事（コンテンツ）の指定方法は？ -> elm.id で指定
-    # todo = Todo.find(params[:id])
-    # todo.destroy
-    p params[:id]
-
+    todo = Todo.find(params[:id])
+    todo.destroy
     redirect '/'
   end
 
   patch '/patch/:id' do
+    p params[:id]
+    todo = Todo.find(params[:id])
 
     redirect '/'
   end
 
 end
-
