@@ -37,7 +37,7 @@
               %input.content-box{ type: 'text', name: 'content', value: '' }
             .input-field
               %select.status-sel{ name: 'status' }
-                %option{:disabled => "disabled", :value => ""}
+                %option{:disabled => "disabled", :selected => "selected", :value => ""}
                   選んでください
                 %option{ value: '1' }
                   TODO
@@ -50,11 +50,8 @@
             %input{ type: 'hidden', name: '_method', value: 'PATCH' }
             %input.waves-effect.waves-light.btn{ type:'submit' }
     .row
-      .col.s12.m3
-        .card.purple.lighten-4
-          .card-content.white-text
-            %input#edit-toggle-btn.green.accent-2.waves-effect.btn{ type:'submit',value:'編集'}
-            %input#del-toggle-btn.red.lighten-1.waves-effect.btn{ type:'submit',value:'削除'}
+      %input#edit-toggle-btn.green.accent-2.waves-effect.btn-small{ type:'submit',value:'編集'}
+      %input#del-toggle-btn.red.lighten-1.waves-effect.btn-small{ type:'submit',value:'削除'}
     .row
       - todo = @todo[1]
       = haml :_result, :locals => { target: todo, name: 'TODO' }
