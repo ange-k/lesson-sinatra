@@ -51,6 +51,9 @@ class Server < Sinatra::Base
   patch '/patch/:id' do
     p params[:id]
     todo = Todo.find(params[:id])
+    todo.content = params['content']
+    todo.status = params['status']
+    todo.save
 
     redirect '/'
   end

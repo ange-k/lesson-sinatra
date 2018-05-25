@@ -5,10 +5,7 @@
         = name
     - target.each do |elm|
       %li.collection-item
-        -# %form.sub-btn{action: "/patch/#{elm.id}", method: :post, name: "patch"}
-          %input{ type: 'hidden', name: '_method', value: 'PATCH' }
-          %input.green.accent-2.waves-circle.edit-btn{ type: "submit", style: "display: none", value: ""}
-        %input.green.accent-2.waves-circle.edit-btn{ type: "submit", style: "display: none", value: "", locals: {id: elm.id, content: elm.content, status: elm.status}}
+        %input.green.accent-2.waves-circle.edit-btn{ type: "submit", style: "display: none", value: "", todo_id: elm.id, content: elm.content, status: elm.status}
         %form.sub-btn{action: "/destroy/#{elm.id}", method: :post, name: "destory"}
           %input{ type: 'hidden', name: '_method', value: 'DELETE' }
           %input.red.lighten-1.waves-circle.del-btn{ type: "submit", style: "display: none", value: ""}

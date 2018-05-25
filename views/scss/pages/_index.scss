@@ -5,11 +5,13 @@
     display: inline-block;
     margin: 0 1px;
   }
+  // .edit-menu {
   .edit-menu {
-    // position: absolute;
-    // margin-left: 150px;
-    // margin-top: 300px;
-    // display: none;
-    // z-index: 9999;
+    display: none;
+    position: fixed;
+    margin-left: 200px;
+    margin-top: -200px;
+    z-index: 9999;
+    width: 600px;
   }
 }
