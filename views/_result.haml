@@ -5,4 +5,8 @@
         = name
     - target.each do |elm|
       %li.collection-item
+        %input.green.accent-2.waves-circle.edit-btn{ type: "submit", style: "display: none", value: "", todo_id: elm.id, content: elm.content, status: elm.status}
+        %form.sub-btn{action: "/destroy/#{elm.id}", method: :post, name: "destory"}
+          %input{ type: 'hidden', name: '_method', value: 'DELETE' }
+          %input.red.lighten-1.waves-circle.del-btn{ type: "submit", style: "display: none", value: ""}
         = elm.content

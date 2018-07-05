@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
 #page--index {
-
+  .sub-btn{
+    display: inline-block;
+    margin: 0 1px;
+  }
+  // .edit-menu {
+  .edit-menu {
+    display: none;
+    position: fixed;
+    margin-left: 200px;
+    margin-top: -200px;
+    z-index: 9999;
+    width: 600px;
+  }
 }

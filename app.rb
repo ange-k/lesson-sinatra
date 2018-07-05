@@ -9,6 +9,7 @@ require 'sass'
 require_relative 'models/todo'
 
 class Server < Sinatra::Base
+  enable :method_override
 
   configure do
     register Sinatra::Reloader
@@ -26,12 +27,12 @@ class Server < Sinatra::Base
   end
 
   #routes
-  
+
   get '/' do
     @todo = Todo.all.group_by(&:status)
     p @todo
     haml :index
-  end 
+  end
 
   post '/regist' do
     content = params['content']
@@ -41,5 +42,20 @@ class Server < Sinatra::Base
     redirect '/'
   end
 
-end
+  delete '/destroy/:id' do
+    todo = Todo.find(params[:id])
+    todo.destroy
+    redirect '/'
+  end
 
+  patch '/patch/:id' do
+    p params[:id]
+    todo = Todo.find(params[:id])
+    todo.content = params['content']
+    todo.status = params['status']
+    todo.save
+
+    redirect '/'
+  end
+
+end

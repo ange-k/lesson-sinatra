@@ -1,19 +1,42 @@
-%h2 Todo List
-.left-align
-  .row
-    .col.s12.m6
-      .card.blue-grey.darken-1
+#page--index
+  %h2 Todo List
+  .left-align
+    .row
+      .col.s12.m6
+        .card.blue-grey.darken-1
+          .card-content.white-text
+            %span.card-title 新しいTODO
+            %p あなたの新しいTODOを登録しよう
+          .card-action
+            %form{ :action => "regist", :method => "POST" }
+              .input-field
+                %label
+                  todo:
+                %input{ type: 'text', name: 'content', value: '' }
+              .input-field
+                %select{ name: 'status' }
+                  %option{:disabled => "disabled", :selected => "selected", :value => ""}
+                    選んでください
+                  %option{ value: '1' }
+                    TODO
+                  %option{ value: '2' }
+                    DOING
+                  %option{ value: '3' }
+                    DONE
+                %label
+                  category:
+              %input.waves-effect.waves-light.btn{ type:'submit'}
+    .row.edit-menu
+      .card.teal.lighten-3
         .card-content.white-text
-          %span.card-title 新しいTODO
-          %p あなたの新しいTODOを登録しよう
+          %span.card-title 編集メニュー
         .card-action
-          %form{ :action => "regist", :method => "POST" }
+          %form{ :action => "/patch/:id", :method => "POST" }
             .input-field
-              %label
-                todo:
-              %input{ type: 'text', name: 'content', value: '' }
+              todo:
+              %input.content-box{ type: 'text', name: 'content', value: '' }
             .input-field
-              %select{ name: 'status' }
+              %select.status-sel{ name: 'status' }
                 %option{:disabled => "disabled", :selected => "selected", :value => ""}
                   選んでください
                 %option{ value: '1' }
@@ -24,12 +47,15 @@
                   DONE
               %label
                 category:
-            %input.waves-effect.waves-light.btn{ type:'submit'}
-  .row
-    - todo = @todo[1]
-    = haml :_result, :locals => { target: todo, name: 'TODO' }
-    - doing = @todo[2]
-    = haml :_result, :locals => { target: doing, name: 'DOING' }
-    - done = @todo[3]
-    = haml :_result, :locals => { target: done, name: 'DONE' }
-
+            %input{ type: 'hidden', name: '_method', value: 'PATCH' }
+            %input.waves-effect.waves-light.btn{ type:'submit' }
+    .row
+      %input#edit-toggle-btn.green.accent-2.waves-effect.btn-small{ type:'submit',value:'編集'}
+      %input#del-toggle-btn.red.lighten-1.waves-effect.btn-small{ type:'submit',value:'削除'}
+    .row
+      - todo = @todo[1]
+      = haml :_result, :locals => { target: todo, name: 'TODO' }
+      - doing = @todo[2]
+      = haml :_result, :locals => { target: doing, name: 'DOING' }
+      - done = @todo[3]
+      = haml :_result, :locals => { target: done, name: 'DONE' }
